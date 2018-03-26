@@ -9,8 +9,8 @@
  */
 namespace Uj\Mail\Service;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Uj\Mail email service factory.
@@ -27,10 +27,10 @@ class EmailFactory implements
      * @see FactoryInterface::createService()
      * @return \Zend\Mail\Transport\TransportInterface
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ContainerInterface $container)
     {
-        $transport = $serviceLocator->get('Uj\Mail\Transport');
-        $renderer  = $serviceLocator->get('Uj\Mail\Renderer');
+        $transport = $container->get('Uj\Mail\Transport');
+        $renderer  = $container->get('Uj\Mail\Renderer');
 
         return new Email($transport, $renderer);
     }

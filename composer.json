@@ -21,10 +21,10 @@
         "url": "https://packages.zendframework.com/"
     }],
     "require": {
-        "php": ">=5.3",
+        "php": ">=5.6",
         "zendframework/zend-mail": "2.*",
         "zendframework/zend-modulemanager": "2.*",
-        "zendframework/zend-servicemanager": "2.*",
+        "zendframework/zend-servicemanager": "3.*",
         "zendframework/zend-view": "2.*"
     },
     "autoload": {

@@ -9,8 +9,8 @@
  */
 namespace Uj\Mail\Service;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Uj\Mail\Exception\RuntimeException;
 
 /**
@@ -35,9 +35,9 @@ class TransportFactory implements
      * @see FactoryInterface::createService()
      * @return \Zend\Mail\Transport\TransportInterface
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ContainerInterface $container)
     {
-        $config = $serviceLocator->get('config');
+        $config = $container->get('config');
 
         if (empty($config['uj']['mail']['transport']['type'])) {
             throw new RuntimeException(

@@ -9,8 +9,8 @@
  */
 namespace Uj\Mail\Service;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\View\Resolver\AggregateResolver;
 use Zend\View\Resolver\TemplatePathStack;
@@ -32,9 +32,9 @@ class RendererFactory implements
      * @see FactoryInterface::createService()
      * @return \Zend\View\Renderer\RendererInterface
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ContainerInterface $container)
     {
-        $config = $serviceLocator->get('config');
+        $config = $container->get('config');
         if (empty($config['uj']['mail']['renderer'])) {
             throw new RuntimeException(
                 'Config required in order to create \Uj\Mail\Renderer.'.
@@ -54,7 +54,7 @@ class RendererFactory implements
             $resolver->attach($pathStackResolver);
         }
         $renderer = new PhpRenderer();
-        $renderer->setHelperPluginManager($serviceLocator->get('ViewHelperManager'));
+        $renderer->setHelperPluginManager($container->get('ViewHelperManager'));
         $renderer->setResolver($resolver);
 
         return $renderer;
