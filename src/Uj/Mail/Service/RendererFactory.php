@@ -26,6 +26,11 @@ use Uj\Mail\Exception\RuntimeException;
 class RendererFactory implements
     FactoryInterface
 {
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        return $this->createService($container);
+    }
+
     /**
      * Create, configure and return the email renderer.
      *

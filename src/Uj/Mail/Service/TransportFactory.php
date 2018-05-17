@@ -29,6 +29,11 @@ class TransportFactory implements
      */
     const STD_TRANSPORT_NS = 'Zend\Mail\Transport';
 
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        return $this->createService($container);
+    }
+
     /**
      * Create, configure and return the email transport.
      *

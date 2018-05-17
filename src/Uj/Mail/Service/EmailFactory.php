@@ -21,6 +21,11 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 class EmailFactory implements
     FactoryInterface
 {
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        return $this->createService($container);
+    }
+
     /**
      * Create, configure and return the email transport.
      *
